@@ -205,6 +205,8 @@ en:
       participation_text: Decide how to shape the city you want to live in.
       participation_title: Participation
       privacy: Privacy Policy
+      disclaimer: This website was produced with the support of the Grow Civic Programme funded by the European Union. Its contents are the sole responsibility of Decidecyprus.org and do not necessarily reflect the views of the European Union.
+      disclaimer_logo: grow_civic.png
     header:
       administration_menu: Menu
       administration: Administration
