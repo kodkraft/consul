@@ -5,7 +5,7 @@ tr:
       description: "Census'un erişim şartları ve koşullarına ilişkin bilgi sayfası."
     conditions:
       title: Kullanım şartları ve koşulları
-      subtitle: AÇIK KAYNAKLI PUSULA PORTALININ KİŞİSEL VERİLERİNİN KULLANIMI, GİZLİLİĞİ VE KORUNMASI HAKKINDA YASAL BİLDİRİMİ
+      subtitle: AÇIK KAYNAKLI DECIDECYPRUS PORTALININ KİŞİSEL VERİLERİNİN KULLANIMI, GİZLİLİĞİ VE KORUNMASI HAKKINDA YASAL BİLDİRİMİ
       description: Kişisel bilgilerin kullanım koşulları, gizliliği ve korunması hakkında bilgi sayfası.
     help:
       title: "%{org} halkın kamusal kararlara doğrudan katılımını hedefleyen bir platformdur"
@@ -27,7 +27,7 @@ tr:
         figcaption: 'Tartışmaları değerlendirmek için "katılıyorum" ve "katılmıyorum" butonları.'
       proposals:
         title: "Öneriler"
-        description: "%{link} bölümünde, Pusula tarafından gerçekleştirilmesi için önerilerde bulunabilirsiniz. Öneriler destek gerektirir ve eğer yeterli desteğe ulaşırlarsa, halk oylamasına sunulur. Vatandaşlar tarafından en fazla oy alan öneri gerçekleştirilecektir."
+        description: "%{link} bölümünde, yetkililer tarafından gerçekleştirilmesi için ve/veya karar verircilerin değerlendirmesi için önerilerde bulunabilirsiniz. Öneriler destek gerektirir ve eğer yeterli desteğe ulaşırlarsa, halk oylamasına sunulur."
         link: "vatandaş önerileri"
         image_alt: "Öneriyi destekleme butonu"
         figcaption: 'Tasarıyı "Destekleme" butonu.'
@@ -39,7 +39,7 @@ tr:
         figcaption: 'Katılımcı bütçelerin "Destek" ve "Oylama" aşamaları.'
       polls:
         title: "Anketler"
-        description: "%{link} bölümü, bir teklif 1% desteğe ulaştığında ve oylamaya gittiğinde veya Pusula'nın vatadaşlar tarafından karar verilmesi için bir konuda öneride bulunduğunda etkinleşir."
+        description: "%{link} bölümü, bir teklif 1% desteğe ulaştığında ve oylamaya gittiğinde veya Decidecyprus'un vatadaşlar tarafından karar verilmesi için bir konuda öneride bulunduğunda etkinleşir."
         link: "anketler"
         feature_1: "Oylamaya katılmak için %{link}'e sahip olmanız ve hesabınızı doğrulamanız gerekiyor."
         feature_1_link: "%{org_name} ya kaydol"
