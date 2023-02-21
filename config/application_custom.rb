@@ -3,7 +3,8 @@ module Consul
     config.i18n.default_locale = :tr
     config.i18n.available_locales =[
       "tr",
-      "en"
+      "en",
+      "el"
     ]
   end
 end
