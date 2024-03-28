@@ -62,13 +62,9 @@ so:
       form:
         submit_button: Biloow dooda
     debate:
-      comments:
-        zero: Falooyin majiraan
-        one: hal faalo
-        other: "hal faalo%{count} Talooyin ku saabsan abuurista dood"
       votes:
         zero: Looma baahna codad
-        one: 1 Cod 
+        one: 1 Cod
         other: "%{count} codadka"
     edit:
       editing: Beddel dood
@@ -121,10 +117,6 @@ so:
       start_new: Biloow dooda
     show:
       author_deleted: Isticmalaha la tirtiray
-      comments:
-        zero: Falooyin majiraan
-        one: 1 faalo
-        other: "%{count} falooyinka"
       comments_title: Faalo
       edit_debate_link: Isbedel
       flag: Dooddani waxaa loo calaamadiyay iyada oo aan ku habboonayn dad badan oo isticmaala.
@@ -139,7 +131,6 @@ so:
       invalid_date_range: "Taariikhda ku-meel-gaadhka ah"
   form:
     accept_terms: Wan ogolahay%{policy} iyo%{conditions}
-    accept_terms_title: Waxaan ku raacsanahay Siyaasadda Khaaska ah iyo shuruudaha isticmaalka
     conditions: Shuruudaha iyo xaaladaha isticmaalka
     debate: Dood
     direct_message: fariin Garaa
@@ -162,11 +153,6 @@ so:
   geozones:
     none: Dhaman magaloyinka
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Dab-demiska
-      ie: Waxaanu ogaanay inaad adigu internetka kula socoto. Wixii khibrad dheeraad ah, waxaan ku talineynaa isticmaalka% %{firefox} ama%{chrome}.
-      ie_title: Websaydaan laguma soo koobi karo barta internetka
     dashboard:
       proposal_header:
         published: Sobandhigaay
@@ -351,10 +337,6 @@ so:
         edit: "Ka hor inta aan la wadaagin waxaad awoodi doontaa inaad bedesho qoraalka sida aad jeceshahay."
         view_proposal: Hadda ma ahan, u gudbi dalabkayga
       already_supported: Waxaad hore u taageertay qorshahaan. La wadaag!
-      comments:
-        zero: Falooyin majiraan
-        one: 1 faalo
-        other: "%{count} falooyinka"
       support: Tageero
       support_title: Taageeraan hindisahan
       supports:
@@ -363,7 +345,7 @@ so:
         other: "%{count} tageereyal"
       votes:
         zero: Looma baahna codad
-        one: 1 Cod 
+        one: 1 Cod
         other: "%{count} codadka"
       supports_necessary: "%{number} taageerada loo baahan yahay"
       total_percent: 100%
@@ -372,10 +354,6 @@ so:
     show:
       author_deleted: Isticmalaha la tirtiray
       code: "Talo soo jeedin:"
-      comments:
-        zero: Falooyin majiraan
-        one: 1 faalo
-        other: "%{count} falooyinka"
       comments_tab: Faalo
       flag: Soo jeedintaas waxaa loo calaamadeeyay sida aan haboonayn dadka isticmaala.
       notifications_tab: Ogaysiisyo

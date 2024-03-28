@@ -5,7 +5,7 @@ describe "Admin custom images", :admin do
     visit admin_root_path
 
     within("#side_menu") do
-      click_link "Settings"
+      click_link "Site content"
       click_link "Custom images"
     end
 
@@ -31,6 +31,7 @@ describe "Admin custom images", :admin do
   end
 
   scenario "Image is replaced on front views" do
+    create(:geozone)
     budget = create(:budget)
     group = create(:budget_group, budget: budget)
 

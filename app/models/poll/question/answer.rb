@@ -17,9 +17,9 @@ class Poll::Question::Answer < ApplicationRecord
   scope :with_content, -> { where.not(id: without_content) }
   scope :without_content, -> do
     where(description: "")
-      .left_joins(:images).where(images: { id: nil })
-      .left_joins(:documents).where(documents: { id: nil })
-      .left_joins(:videos).where(poll_question_answer_videos: { id: nil })
+      .where.missing(:images)
+      .where.missing(:documents)
+      .where.missing(:videos)
   end
 
   def self.order_answers(ordered_array)
@@ -39,5 +39,9 @@ class Poll::Question::Answer < ApplicationRecord
 
   def total_votes_percentage
     question.answers_total_votes.zero? ? 0 : (total_votes * 100.0) / question.answers_total_votes
+  end
+
+  def with_read_more?
+    description.present? || images.any? || documents.any? || videos.any?
   end
 end

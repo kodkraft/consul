@@ -1,6 +1,7 @@
 es:
   account:
     show:
+      last_sign_in: "Último acceso efectuado: %{last_sign_in_at} desde la IP %{last_sign_in_ip}"
       change_credentials_link: Cambiar mis datos de acceso
       erase_account_link: Darme de baja
       finish_verification: Finalizar verificación
@@ -137,9 +138,12 @@ es:
       allowed_file_content_types: "el tipo de contenido debe ser uno de los siguientes: %{types}"
       user_not_found: Usuario no encontrado
       invalid_date_range: "El rango de fechas no es válido"
+      past_date: "No puede ser una fecha pasada"
+      cannot_change_date:
+        poll_started: "No puede ser cambiada si la votación ha comenzado"
+        poll_ended: "No puede ser cambiada si la votación ha acabado"
   form:
     accept_terms: Acepto la %{policy} y las %{conditions}
-    accept_terms_title: Acepto la Política de privacidad y las Condiciones de uso
     conditions: Condiciones de uso
     debate: el debate
     direct_message: el mensaje privado
@@ -173,11 +177,6 @@ es:
   geozones:
     none: Toda la ciudad
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Hemos detectado que estás navegando desde Internet Explorer. Para una mejor experiencia te recomendamos utilizar %{firefox} o %{chrome}.
-      ie_title: Esta web no está optimizada para tu navegador
     dashboard:
       proposal_header:
         published: Publicada
@@ -196,9 +195,9 @@ es:
     footer:
       accessibility: Accesibilidad
       conditions: Condiciones de uso
-      consul: aplicación CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: aplicación CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Este portal usa la %{consul} que es %{open_source}.
       open_source: software de código abierto
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -229,6 +228,7 @@ es:
           zero: "No tienes notificaciones nuevas"
         notifications: Notificaciones
       sdg: "ODS"
+    skip_to_main_content: "Saltar al contenido principal"
   notifications:
     index:
       empty_notifications: No tienes notificaciones nuevas.
@@ -632,6 +632,10 @@ es:
     show:
       vote_answer: "Votar %{answer}"
       voted: "Has votado %{answer}"
+    description:
+      unique: "Puedes seleccionar un máximo de 1 respuesta."
+      multiple: "Puedes seleccionar un máximo de %{maximum} respuestas."
+    read_more_about: "Leer más:"
   proposal_notifications:
     new:
       title: "Enviar notificación"
@@ -717,7 +721,7 @@ es:
       districts: "Distritos"
       districts_list: "Listado de distritos"
       categories: "Categorías"
-    target_blank: " (se abre en ventana nueva)"
+    target_blank: "Se abre en ventana nueva"
     you_are_in: "Estás en"
     unflag: Deshacer denuncia
     unfollow_entity: "Dejar de seguir %{entity}"

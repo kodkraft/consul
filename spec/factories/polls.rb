@@ -6,11 +6,7 @@ FactoryBot.define do
 
     starts_at { 1.month.ago }
     ends_at { 1.month.from_now }
-
-    trait :current do
-      starts_at { 2.days.ago }
-      ends_at { 2.days.from_now }
-    end
+    to_create { |poll| poll.save(validate: false) }
 
     trait :expired do
       starts_at { 1.month.ago }
@@ -22,9 +18,8 @@ FactoryBot.define do
       ends_at { 2.months.ago }
     end
 
-    trait :recounting do
-      starts_at { 1.month.ago }
-      ends_at { Date.current }
+    trait :future do
+      starts_at { 1.day.from_now }
     end
 
     trait :published do
@@ -36,11 +31,15 @@ FactoryBot.define do
     end
 
     trait :for_budget do
-      association :budget
+      budget
     end
 
     trait :with_image do
       after(:create) { |poll| create(:image, imageable: poll) }
+    end
+
+    trait :with_author do
+      author factory: :user
     end
 
     transient { officers { [] } }
@@ -50,17 +49,41 @@ FactoryBot.define do
         create(:poll_officer_assignment, poll: poll, officer: officer)
       end
     end
+
+    factory :poll_with_author, traits: [:with_author]
   end
 
   factory :poll_question, class: "Poll::Question" do
     poll
-    association :author, factory: :user
+    author factory: :user
     sequence(:title) { |n| "Question title #{n}" }
 
     trait :yes_no do
       after(:create) do |question|
         create(:poll_question_answer, question: question, title: "Yes")
         create(:poll_question_answer, question: question, title: "No")
+      end
+    end
+
+    trait :abc do
+      after(:create) do |question, evaluator|
+        %w[A B C].each do |letter|
+          create(:poll_question_answer, question: question, title: "Answer #{letter}")
+        end
+      end
+    end
+
+    factory :poll_question_unique do
+      after(:create) do |question|
+        create(:votation_type_unique, questionable: question)
+      end
+    end
+
+    factory :poll_question_multiple do
+      transient { max_votes { 3 } }
+
+      after(:create) do |question, evaluator|
+        create(:votation_type_multiple, questionable: question, max_votes: evaluator.max_votes)
       end
     end
   end
@@ -85,6 +108,10 @@ FactoryBot.define do
     trait :with_video do
       after(:create) { |answer| create(:poll_answer_video, answer: answer) }
     end
+
+    factory :future_poll_question_answer do
+      poll { association(:poll, :future) }
+    end
   end
 
   factory :poll_answer_video, class: "Poll::Question::Answer::Video" do
@@ -103,11 +130,11 @@ FactoryBot.define do
 
   factory :poll_booth_assignment, class: "Poll::BoothAssignment" do
     poll
-    association :booth, factory: :poll_booth
+    booth factory: :poll_booth
   end
 
   factory :poll_officer_assignment, class: "Poll::OfficerAssignment" do
-    association :officer, factory: :poll_officer
+    officer factory: :poll_officer
     date { Date.current }
 
     transient { poll { association(:poll) } }
@@ -123,8 +150,8 @@ FactoryBot.define do
   end
 
   factory :poll_shift, class: "Poll::Shift" do
-    association :booth, factory: :poll_booth
-    association :officer, factory: :poll_officer
+    booth factory: :poll_booth
+    officer factory: :poll_officer
     date { Date.current }
 
     trait :vote_collection_task do
@@ -137,7 +164,7 @@ FactoryBot.define do
   end
 
   factory :poll_voter, class: "Poll::Voter" do
-    association :user, :level_two
+    user factory: [:user, :level_two]
     from_web
 
     transient { budget { nil } }
@@ -145,7 +172,6 @@ FactoryBot.define do
     poll { budget&.poll || association(:poll, budget: budget) }
     trait :from_web do
       origin { "web" }
-      token { SecureRandom.hex(32) }
     end
 
     trait :from_booth do
@@ -159,8 +185,8 @@ FactoryBot.define do
 
       officer_assignment do
         association :poll_officer_assignment,
-          booth_assignment: booth_assignment,
-          officer: officer || association(:poll_officer)
+                    booth_assignment: booth_assignment,
+                    officer: officer || association(:poll_officer)
       end
     end
 
@@ -176,20 +202,20 @@ FactoryBot.define do
   end
 
   factory :poll_answer, class: "Poll::Answer" do
-    association :question, factory: [:poll_question, :yes_no]
-    association :author, factory: [:user, :level_two]
+    question factory: [:poll_question, :yes_no]
+    author factory: [:user, :level_two]
     answer { question.question_answers.sample.title }
   end
 
   factory :poll_partial_result, class: "Poll::PartialResult" do
-    association :question, factory: [:poll_question, :yes_no]
-    association :author, factory: :user
+    question factory: [:poll_question, :yes_no]
+    author factory: :user
     origin { "web" }
     answer { question.question_answers.sample.title }
   end
 
   factory :poll_recount, class: "Poll::Recount" do
-    association :author, factory: :user
+    author factory: :user
     origin { "web" }
 
     trait :from_booth do
@@ -204,19 +230,19 @@ FactoryBot.define do
   end
 
   factory :poll_ballot_sheet, class: "Poll::BallotSheet" do
-    association :poll
-    association :officer_assignment, factory: :poll_officer_assignment
+    poll
+    officer_assignment factory: :poll_officer_assignment
     data { "1234;9876;5678\n1000;2000;3000;9999" }
   end
 
   factory :poll_ballot, class: "Poll::Ballot" do
-    association :ballot_sheet, factory: :poll_ballot_sheet
+    ballot_sheet factory: :poll_ballot_sheet
     data { "1,2,3" }
   end
 
   factory :officing_residence, class: "Officing::Residence" do
     user
-    association :officer, factory: :poll_officer
+    officer factory: :poll_officer
     document_number
     document_type    { "1" }
     year_of_birth    { "1980" }

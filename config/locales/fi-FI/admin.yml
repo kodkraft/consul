@@ -229,7 +229,6 @@ fi:
     documents:
       index:
         title: "Asiakirjat"
-        url: "URL"
     hidden_users:
       index:
         filter: Suodatin
@@ -453,9 +452,6 @@ fi:
           documents: Asiakirjat
           document_actions: Toiminnot
     answers:
-      show:
-        description: Kuvaus
-        images: Kuvat
       videos:
         index:
           title: Videot

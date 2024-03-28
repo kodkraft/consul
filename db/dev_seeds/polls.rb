@@ -2,33 +2,40 @@ require_dependency "poll/answer"
 require_dependency "poll/question/answer"
 
 section "Creating polls" do
-  Poll.create!(name: I18n.t("seeds.polls.current_poll"),
+  def create_poll!(attributes)
+    poll = Poll.create!(attributes.merge(starts_at: 1.day.from_now, ends_at: 2.days.from_now))
+    poll.update_columns(
+      starts_at: attributes[:starts_at].beginning_of_minute,
+      ends_at: attributes[:ends_at].beginning_of_minute
+    )
+  end
+
+  create_poll!(name: I18n.t("seeds.polls.current_poll"),
                slug: I18n.t("seeds.polls.current_poll").parameterize,
                starts_at: 7.days.ago,
-               ends_at:   7.days.from_now,
+               ends_at: 7.days.from_now,
                geozone_restricted: false)
 
-  Poll.create!(name: I18n.t("seeds.polls.current_poll_geozone_restricted"),
+  create_poll!(name: I18n.t("seeds.polls.current_poll_geozone_restricted"),
                slug: I18n.t("seeds.polls.current_poll_geozone_restricted").parameterize,
                starts_at: 5.days.ago,
-               ends_at:   5.days.from_now,
-               geozone_restricted: true,
-               geozones: Geozone.sample(3))
+               ends_at: 5.days.from_now,
+               geozone_restricted_to: Geozone.sample(3))
 
-  Poll.create!(name: I18n.t("seeds.polls.recounting_poll"),
+  create_poll!(name: I18n.t("seeds.polls.recounting_poll"),
                slug: I18n.t("seeds.polls.recounting_poll").parameterize,
                starts_at: 15.days.ago,
-               ends_at:   2.days.ago)
+               ends_at: 2.days.ago)
 
-  Poll.create!(name: I18n.t("seeds.polls.expired_poll_without_stats"),
+  create_poll!(name: I18n.t("seeds.polls.expired_poll_without_stats"),
                slug: I18n.t("seeds.polls.expired_poll_without_stats").parameterize,
                starts_at: 2.months.ago,
-               ends_at:   1.month.ago)
+               ends_at: 1.month.ago)
 
-  Poll.create!(name: I18n.t("seeds.polls.expired_poll_with_stats"),
+  create_poll!(name: I18n.t("seeds.polls.expired_poll_with_stats"),
                slug: I18n.t("seeds.polls.expired_poll_with_stats").parameterize,
                starts_at: 2.months.ago,
-               ends_at:   1.month.ago,
+               ends_at: 1.month.ago,
                results_enabled: true,
                stats_enabled: true)
 
@@ -47,9 +54,9 @@ end
 
 section "Creating Poll Questions & Answers" do
   Poll.find_each do |poll|
-    (1..4).to_a.sample.times do
+    (3..5).to_a.sample.times do
       question_title = Faker::Lorem.sentence(word_count: 3).truncate(60) + "?"
-      question = Poll::Question.new(author: User.all.sample,
+      question = Poll::Question.new(author: User.sample,
                                     title: question_title,
                                     poll: poll)
       I18n.available_locales.map do |locale|
@@ -76,17 +83,26 @@ section "Creating Poll Questions & Answers" do
   end
 end
 
+section "Creating Poll Votation types" do
+  poll = Poll.first
+
+  poll.questions.each do |question|
+    vote_type = VotationType.vote_types.keys.sample
+    question.create_votation_type!(vote_type: vote_type, max_votes: (3 unless vote_type == "unique"))
+  end
+end
+
 section "Creating Poll Booths & BoothAssignments" do
   20.times do |i|
     Poll::Booth.create(name: "Booth #{i}",
                        location: Faker::Address.street_address,
-                       polls: [Poll.all.sample])
+                       polls: [Poll.sample])
   end
 end
 
 section "Creating Poll Shifts for Poll Officers" do
   Poll.find_each do |poll|
-    Poll::BoothAssignment.where(poll: poll).each do |booth_assignment|
+    Poll::BoothAssignment.where(poll: poll).find_each do |booth_assignment|
       scrutiny = (poll.ends_at.to_datetime..poll.ends_at.to_datetime + Poll::RECOUNT_DURATION)
       Poll::Officer.find_each do |poll_officer|
         {
@@ -109,8 +125,8 @@ end
 
 section "Commenting Polls" do
   30.times do
-    author = User.all.sample
-    poll = Poll.all.sample
+    author = User.sample
+    poll = Poll.sample
     Comment.create!(user: author,
                     created_at: rand(poll.created_at..Time.current),
                     commentable: poll,
@@ -120,7 +136,7 @@ end
 
 section "Creating Poll Voters" do
   def vote_poll_on_booth(user, poll)
-    officer = Poll::Officer.all.sample
+    officer = Poll::Officer.sample
 
     Poll::Voter.create!(document_type: user.document_type,
                         document_number: user.document_number,
@@ -138,8 +154,7 @@ section "Creating Poll Voters" do
                         document_number: user.document_number,
                         user: user,
                         poll: poll,
-                        origin: "web",
-                        token: SecureRandom.hex(32))
+                        origin: "web")
   end
 
   def randomly_answer_questions(poll, user)
@@ -215,7 +230,7 @@ end
 
 section "Creating Poll Questions from Proposals" do
   3.times do
-    proposal = Proposal.all.sample
+    proposal = Proposal.sample
     poll = Poll.current.first
     question = Poll::Question.new(poll: poll)
     question.copy_attributes_from_proposal(proposal)
@@ -245,7 +260,7 @@ end
 
 section "Creating Successful Proposals" do
   10.times do
-    proposal = Proposal.all.sample
+    proposal = Proposal.sample
     poll = Poll.current.first
     question = Poll::Question.new(poll: poll)
     question.copy_attributes_from_proposal(proposal)

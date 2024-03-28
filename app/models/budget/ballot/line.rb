@@ -16,7 +16,6 @@ class Budget
       scope :by_investment, ->(investment_id) { where(investment_id: investment_id) }
 
       before_validation :set_denormalized_ids
-      after_save :store_user_heading
 
       def check_enough_resources
         ballot.lock!
@@ -29,7 +28,8 @@ class Budget
       def check_valid_heading
         return if ballot.valid_heading?(heading)
 
-        errors.add(:heading, "This heading's budget is invalid, or a heading on the same group was already selected")
+        errors.add(:heading,
+                   "This heading's budget is invalid, or a heading on the same group was already selected")
       end
 
       def check_selected
@@ -42,10 +42,6 @@ class Budget
           self.heading_id ||= investment&.heading_id
           self.group_id   ||= investment&.group_id
           self.budget_id  ||= investment&.budget_id
-        end
-
-        def store_user_heading
-          ballot.user.update(balloted_heading_id: heading.id) unless ballot.physical == true
         end
     end
   end

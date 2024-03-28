@@ -40,8 +40,6 @@ en:
     telegram_handle_description: "If filled in it will appear in the footer"
     instagram_handle: "Instagram handle"
     instagram_handle_description: "If filled in it will appear in the footer"
-    url: "Main URL"
-    url_description: "Main URL of your website"
     org_name: "Site name"
     org_name_description: "This name will appear on mailers subject, help pages..."
     related_content_score_threshold: "Related content score threshold"
@@ -171,6 +169,9 @@ en:
         valid: "Condition for detecting a valid response"
         valid_description: "What response path has to come informed to be considered a valid response and user verified"
     map:
+      feature:
+        marker_clustering: "Marker clustering"
+        marker_clustering_description: "Enables map markers clusterization. Useful when there are a lot of markers to show."
       latitude: "Latitude"
       latitude_description: "Latitude to show the map position"
       longitude: "Longitude"

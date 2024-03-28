@@ -3,6 +3,7 @@ require "email_spec"
 require "devise"
 require "knapsack_pro"
 
+Dir["./spec/factory_bot/**/*.rb"].sort.each { |f| require f }
 Dir["./spec/models/concerns/*.rb"].each { |f| require f }
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 Dir["./spec/shared/**/*.rb"].sort.each  { |f| require f }
@@ -57,16 +58,12 @@ RSpec.configure do |config|
     Capybara::Webmock.stop
   end
 
-  config.after(:each, :page_driver) do
-    page.driver.reset!
-  end
-
   config.before(:each, type: :system) do |example|
     driven_by :headless_chrome
     Capybara.default_set_options = { clear: :backspace }
   end
 
-  config.before(:each, type: :system, no_js: true) do
+  config.before(:each, :no_js, type: :system) do
     driven_by :rack_test
     Capybara.default_set_options = {}
   end
@@ -93,6 +90,14 @@ RSpec.configure do |config|
     sign_in(nil)
   end
 
+  config.before(:each, :admin, type: :component) do
+    sign_in(create(:administrator).user)
+  end
+
+  config.around(:each, :admin, type: :component) do |example|
+    with_controller_class(Admin::BaseController) { example.run }
+  end
+
   config.around(:each, :controller, type: :component) do |example|
     with_controller_class(example.metadata[:controller]) { example.run }
   end
@@ -117,6 +122,14 @@ RSpec.configure do |config|
     Delayed::Worker.delay_jobs = false
   end
 
+  config.before(:each, :seed_tenants) do
+    Apartment.seed_after_create = true
+  end
+
+  config.after(:each, :seed_tenants) do
+    Apartment.seed_after_create = false
+  end
+
   config.before(:each, :small_window) do
     @window_size = Capybara.current_window.size
     Capybara.current_window.resize_to(639, 479)
@@ -128,22 +141,17 @@ RSpec.configure do |config|
 
   config.before(:each, :remote_translations) do
     allow(RemoteTranslations::Microsoft::AvailableLocales)
-      .to receive(:available_locales).and_return(I18n.available_locales.map(&:to_s))
+      .to receive(:locales).and_return(I18n.available_locales.map(&:to_s))
   end
 
-  config.around(:each, :with_frozen_time) do |example|
-    freeze_time { example.run }
-  end
+  config.before(:each, :with_frozen_time) { freeze_time }
 
   config.before(:each, :application_zone_west_of_system_zone) do
     application_zone = ActiveSupport::TimeZone.new("Quito")
     system_zone = ActiveSupport::TimeZone.new("Madrid")
-
-    allow(Time).to receive(:zone).and_return(application_zone)
-
     system_time_at_application_end_of_day = Date.current.end_of_day.in_time_zone(system_zone)
 
-    allow(Time).to receive(:now).and_return(system_time_at_application_end_of_day)
+    allow(Time).to receive_messages(zone: application_zone, now: system_time_at_application_end_of_day)
     allow(Date).to receive(:today).and_return(system_time_at_application_end_of_day.to_date)
   end
 

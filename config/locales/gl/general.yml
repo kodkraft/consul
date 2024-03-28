@@ -66,10 +66,6 @@ gl:
       form:
         submit_button: Comezar un debate
     debate:
-      comments:
-        zero: Sen comentarios
-        one: 1 comentario
-        other: "%{count} comentarios"
       votes:
         zero: Ningún voto
         one: 1 voto
@@ -125,10 +121,6 @@ gl:
       start_new: Comezar un debate
     show:
       author_deleted: Usuario/a borrado/a
-      comments:
-        zero: Ningún comentario
-        one: 1 comentario
-        other: "%{count} comentarios"
       comments_title: Comentarios
       edit_debate_link: Editar proposta
       flag: Este debate foi marcado como inapropiado por varias persoas usuarias.
@@ -143,7 +135,6 @@ gl:
       invalid_date_range: "O rango de datas non é correcto"
   form:
     accept_terms: Acepto a %{policy} e as %{conditions}
-    accept_terms_title: Acepto a política de privacidade e as condicións de uso
     conditions: Condicións de uso
     debate: o debate
     direct_message: a mensaxe privada
@@ -169,11 +160,6 @@ gl:
   geozones:
     none: Toda a cidade
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Detectamos que estás navegando dende Internet Explorer. Para unha mellor experiencia recomendámosche empregar %{chrome} ou %{firefox}.
-      ie_title: Esta web non está optimizada para o teu navegador
     dashboard:
       proposal_header:
         published: Publicada
@@ -192,9 +178,9 @@ gl:
     footer:
       accessibility: Accesibilidade
       conditions: Condicións de uso
-      consul: aplicación CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: aplicación CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Este portal usa a %{consul} que é %{open_source}. De Madrid, para o mundo enteiro.
       open_source: software libre
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -379,10 +365,6 @@ gl:
         edit: "Antes de que se publique, poderás modificar o texto como queiras."
         view_proposal: Agora non, ir á miña proposta
       already_supported: Xa apoiaches esta proposta, compártea!
-      comments:
-        zero: Ningún comentario
-        one: 1 comentario
-        other: "%{count} comentarios"
       support: Apoiar
       support_title: Apoiar esta proposta
       supports:
@@ -401,10 +383,6 @@ gl:
     show:
       author_deleted: Usuario/a borrado/a
       code: "Código da proposta:"
-      comments:
-        zero: Ningún comentario
-        one: 1 comentario
-        other: "%{count} comentarios"
       comments_tab: Comentarios
       dashboard_proposal_link: Panel de control
       flag: Esta proposta foi marcada como inapropiada por varios usuarios.

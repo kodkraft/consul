@@ -23,7 +23,7 @@ class Admin::Budgets::ActionsComponent < ApplicationComponent
           html: winners_action
         },
         ballots: {
-          hint: t("admin.budgets.actions.descriptions.ballots"),
+          hint: ballots_hint,
           html: ballots_action
         },
         destroy: {
@@ -65,7 +65,17 @@ class Admin::Budgets::ActionsComponent < ApplicationComponent
                text: t("admin.budgets.actions.ballots"),
                path: create_budget_poll_path,
                method: :post,
-               confirm: t("admin.budgets.actions.confirm.ballots"))
+               confirm: t("admin.budgets.actions.confirm.ballots"),
+               disabled: !feature?("polls"))
+      end
+    end
+
+    def ballots_hint
+      if feature?("polls")
+        t("admin.budgets.actions.descriptions.ballots")
+      else
+        link = admin_settings_path(anchor: "tab-participation-processes")
+        t("admin.budgets.ballots.feature_disabled", link: link)
       end
     end
 
@@ -73,10 +83,10 @@ class Admin::Budgets::ActionsComponent < ApplicationComponent
       balloting_phase = budget.phases.find_by(kind: "balloting")
 
       admin_polls_path(poll: {
-        name:      budget.name,
+        name: budget.name,
         budget_id: budget.id,
         starts_at: balloting_phase.starts_at,
-        ends_at:   balloting_phase.ends_at
+        ends_at: balloting_phase.ends_at
       })
     end
 

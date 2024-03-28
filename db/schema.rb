@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_112944) do
+ActiveRecord::Schema.define(version: 2023_10_12_141318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -50,7 +50,14 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
     t.datetime "created_at", null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "activities", id: :serial, force: :cascade do |t|
@@ -238,9 +245,11 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.boolean "allow_custom_content", default: false
     t.text "latitude"
     t.text "longitude"
+    t.integer "geozone_id"
     t.integer "max_ballot_lines", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.index ["group_id"], name: "index_budget_headings_on_group_id"
   end
 
@@ -561,6 +570,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "tenant"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -575,10 +585,6 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
 
   create_table "documents", id: :serial, force: :cascade do |t|
     t.string "title"
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.bigint "attachment_file_size"
-    t.datetime "attachment_updated_at"
     t.integer "user_id"
     t.string "documentable_type"
     t.integer "documentable_id"
@@ -634,6 +640,8 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "census_code"
+    t.text "geojson"
+    t.string "color"
   end
 
   create_table "geozones_polls", id: :serial, force: :cascade do |t|
@@ -672,10 +680,6 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.string "title", limit: 80
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.bigint "attachment_file_size"
-    t.datetime "attachment_updated_at"
     t.integer "user_id"
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
     t.index ["user_id"], name: "index_images_on_user_id"
@@ -860,6 +864,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.datetime "hidden_at"
+    t.text "description"
     t.index ["hidden_at"], name: "index_legislation_question_translations_on_hidden_at"
     t.index ["legislation_question_id"], name: "index_d34cc1e1fe6d5162210c41ce56533c5afabcdbd3"
     t.index ["locale"], name: "index_legislation_question_translations_on_locale"
@@ -1210,7 +1215,6 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.integer "user_id"
     t.string "origin"
     t.integer "officer_id"
-    t.string "token"
     t.index ["booth_assignment_id"], name: "index_poll_voters_on_booth_assignment_id"
     t.index ["document_number"], name: "index_poll_voters_on_document_number"
     t.index ["officer_assignment_id"], name: "index_poll_voters_on_officer_assignment_id"
@@ -1556,6 +1560,17 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.index ["proposals_count"], name: "index_tags_on_proposals_count"
   end
 
+  create_table "tenants", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "schema"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "schema_type", default: 0, null: false
+    t.datetime "hidden_at"
+    t.index ["name"], name: "index_tenants_on_name", unique: true
+    t.index ["schema"], name: "index_tenants_on_schema", unique: true
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -1618,7 +1633,6 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.string "redeemable_code"
     t.string "gender", limit: 10
     t.datetime "date_of_birth"
-    t.boolean "email_on_proposal_notification", default: true
     t.boolean "email_digest", default: true
     t.boolean "email_on_direct_message", default: true
     t.boolean "official_position_badge", default: false
@@ -1626,11 +1640,13 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.boolean "created_from_signature", default: false
     t.integer "failed_email_digests_count", default: 0
     t.text "former_users_data_log", default: ""
-    t.integer "balloted_heading_id"
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
     t.string "subscriptions_token"
+    t.integer "failed_attempts", default: 0, null: false
+    t.datetime "locked_at"
+    t.string "unlock_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -1639,6 +1655,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.index ["hidden_at"], name: "index_users_on_hidden_at"
     t.index ["password_changed_at"], name: "index_users_on_password_changed_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
 
@@ -1699,6 +1716,15 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
+  create_table "votation_types", force: :cascade do |t|
+    t.integer "questionable_id"
+    t.string "questionable_type"
+    t.integer "vote_type"
+    t.integer "max_votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
@@ -1742,6 +1768,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
     t.integer "cardable_id"
     t.integer "columns", default: 4
     t.string "cardable_type", default: "SiteCustomization::Page"
+    t.integer "order", default: 1, null: false
     t.index ["cardable_id"], name: "index_widget_cards_on_cardable_id"
   end
 
@@ -1753,9 +1780,11 @@ ActiveRecord::Schema.define(version: 2021_11_03_112944) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "administrators", "users"
   add_foreign_key "budget_administrators", "administrators"
   add_foreign_key "budget_administrators", "budgets"
+  add_foreign_key "budget_headings", "geozones"
   add_foreign_key "budget_investments", "communities"
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"

@@ -28,20 +28,20 @@ nn:
       deleted: Denne kommentaren har blitt slettet
       moderator: Moderator
       responses:
-        zero: Ingen svar
+        zero: "%{count} svar"
         one: 1 svar
         other: "%{count} svar"
       responses_show:
-        zero: Ingen svar
+        zero: "%{count} svar (vis)"
         one: "1 svar (vis)"
         other: "%{count} svar (vis)"
       responses_collapse:
-        zero: Ingen svar
+        zero: "%{count} svar (skjul)"
         one: "1 svar (skjul)"
         other: "%{count} svar (skjul)"
       user_deleted: Brukeren er slettet
       votes:
-        zero: Ingen stemmer
+        zero: "%{count} stemmer"
         one: 1 stemme
         other: "%{count} stemmer"
     form:
@@ -66,12 +66,8 @@ nn:
       form:
         submit_button: Start en debatt
     debate:
-      comments:
-        zero: Ingen kommentarer
-        one: 1 kommentar
-        other: "%{count} kommentarer"
       votes:
-        zero: Ingen stemmer
+        zero: "%{count} stemmer"
         one: 1 stemme
         other: "%{count} stemmer"
     edit:
@@ -125,10 +121,6 @@ nn:
       start_new: Start en debatt
     show:
       author_deleted: Brukeren er slettet
-      comments:
-        zero: Ingen kommentarer
-        one: 1 kommentar
-        other: "%{count} kommentarer"
       comments_title: Kommentarer
       edit_debate_link: Rediger
       flag: Denne debatten har blitt flagget som upassende av flere brukere.
@@ -143,7 +135,6 @@ nn:
       invalid_date_range: "Ugyldig dato"
   form:
     accept_terms: Jeg er enig i %{policy} og %{conditions}
-    accept_terms_title: Jeg er enig i personvern- og brukervilkår
     conditions: Brukervilkår
     debate: Debatt
     direct_message: private meldinger
@@ -167,11 +158,6 @@ nn:
   geozones:
     none: Hele byen
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Vi har oppdaget at du bruker Internet Explorer. For en bedre opplevelse anbefaler vi %{firefox} eller %{chrome}.
-      ie_title: Denne siden er ikke optimalisert for din nettleser
     dashboard:
       proposal_header:
         published: Publisert
@@ -184,16 +170,15 @@ nn:
         preview_proposal: Forhåndsvis forslag
         current_goal: Nåværende mål
         supports:
-          zero: Ingen støtte
           zero: "Støtte"
           one: Støtte
           other: "Støtte"
     footer:
       accessibility: Tilgjengelighet
       conditions: Brukervilkår
-      consul: CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Denne portalen bruker %{consul} som er %{open_source}.
       open_source: open-source software
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -219,7 +204,7 @@ nn:
       budgets: Deltakende budsjettering
       notification_item:
         new_notifications:
-          zero: "Du har ingen nye varsler"
+          zero: Du har %{count} nye varsler
           one: Du har 1 nye varsel
           other: Du har %{count} nye varsler
         notifications: Varsler
@@ -382,18 +367,14 @@ nn:
         edit: "Før forslaget deles, har du mulighet til å endre teksten som du vil."
         view_proposal: Ikke nå, gå til mitt forslag
       already_supported: Du har allerede støttet dette forslaget. Del det!
-      comments:
-        zero: Ingen kommentarer
-        one: 1 kommentarer
-        other: "%{count} kommentarer"
       support: Støtte
       support_title: Støtt dette forslaget
       supports:
-        zero: Ingen støtte
+        zero: "%{count} støtte"
         one: 1 støtte
         other: "%{count} støtte"
       votes:
-        zero: Ingen stemmer
+        zero: "%{count} stemmer"
         one: 1 stemme
         other: "%{count} stemmer"
       supports_necessary: "%{number} støtter trengs"
@@ -404,10 +385,6 @@ nn:
     show:
       author_deleted: Bruker er slettet
       code: "Forslagskode:"
-      comments:
-        zero: Ingen kommentarer
-        one: 1 kommentar
-        other: "%{count} kommentarer"
       comments_tab: Kommentarer
       dashboard_proposal_link: Dashboard
       flag: Dette forslaget har blitt flagget som upassende av flere brukere.

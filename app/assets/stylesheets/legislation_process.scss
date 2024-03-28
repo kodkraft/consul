@@ -134,7 +134,7 @@
     margin-bottom: rem-calc(40);
 
     .debate-type {
-      @include brand-text;
+      @include brand-color;
       text-transform: uppercase;
       font-weight: 700;
       font-size: $small-font-size;
@@ -145,7 +145,7 @@
     }
 
     .debate-title a {
-      @include brand-text;
+      @include brand-color;
     }
   }
 
@@ -191,12 +191,10 @@
         margin-bottom: 0;
         text-transform: uppercase;
       }
-    }
 
-    h4 a {
-      @include brand-text;
-
-      &:hover {
+      a {
+        @include brand-color;
+        @include header-font-size(h4);
         text-decoration: none;
       }
     }
@@ -211,7 +209,7 @@
     }
 
     .quiz-next {
-      @include brand-text;
+      @include brand-color;
       background: #ccdbe5;
       font-size: $small-font-size;
       font-weight: bold;
@@ -232,6 +230,7 @@
   }
 
   .quiz-question {
+    @include header-font-size(h2);
     margin-bottom: $line-height;
   }
 
@@ -264,7 +263,7 @@
     }
 
     .control input:checked ~ .control-indicator {
-      background-color: $brand;
+      @include brand-background;
       border: 0;
     }
 
@@ -458,6 +457,10 @@
         margin: 0 auto;
         max-width: 3 * $grid-row-width / 4;
         padding: rem-calc(32) rem-calc(32) rem-calc(32) rem-calc(48);
+      }
+
+      table {
+        @include table-scroll;
       }
 
       h2 {

@@ -9,11 +9,11 @@ class SMSApi
   def url
     return "" unless end_point_available?
 
-    URI.parse(Rails.application.secrets.sms_end_point).to_s
+    URI.parse(Tenant.current_secrets.sms_end_point).to_s
   end
 
   def authorization
-    Base64.encode64("#{Rails.application.secrets.sms_username}:#{Rails.application.secrets.sms_password}")
+    Base64.encode64("#{Tenant.current_secrets.sms_username}:#{Tenant.current_secrets.sms_password}")
   end
 
   def sms_deliver(phone, code)
@@ -24,7 +24,7 @@ class SMSApi
   end
 
   def request(phone, code)
-    { autorizacion:  authorization,
+    { autorizacion: authorization,
       destinatarios: { destinatario: phone },
       texto_mensaje: "Clave para verificarte: #{code}. Gobierno Abierto",
       solicita_notificacion: "All" }

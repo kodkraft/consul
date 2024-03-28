@@ -37,14 +37,18 @@ class Poll < ApplicationRecord
 
   validates_translation :name, presence: true
   validate :date_range
+  validate :start_date_is_not_past_date, on: :create
+  validate :start_date_change, on: :update
+  validate :end_date_is_not_past_date, on: :update
+  validate :end_date_change, on: :update
   validate :only_one_active, unless: :public?
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
   scope :for, ->(element) { where(related: element) }
-  scope :current,  -> { where("starts_at <= ? and ? <= ends_at", Date.current.beginning_of_day, Date.current.beginning_of_day) }
-  scope :expired,  -> { where("ends_at < ?", Date.current.beginning_of_day) }
-  scope :recounting, -> { where(ends_at: (Date.current.beginning_of_day - RECOUNT_DURATION)..Date.current.beginning_of_day) }
+  scope :current, -> { where("starts_at <= :time and ends_at >= :time", time: Time.current) }
+  scope :expired, -> { where("ends_at < ?", Time.current) }
+  scope :recounting, -> { where(ends_at: (RECOUNT_DURATION.ago)...Time.current) }
   scope :published, -> { where(published: true) }
   scope :by_geozone_id, ->(geozone_id) { where(geozones: { id: geozone_id }.joins(:geozones)) }
   scope :public_for_api, -> { all }
@@ -53,25 +57,49 @@ class Poll < ApplicationRecord
 
   def self.sort_for_list(user = nil)
     all.sort do |poll, another_poll|
-      [poll.weight(user), poll.starts_at, poll.name] <=> [another_poll.weight(user), another_poll.starts_at, another_poll.name]
+      compare_polls(poll, another_poll, user)
+    end
+  end
+
+  def self.compare_polls(poll, another_poll, user)
+    weight_comparison = poll.weight(user) <=> another_poll.weight(user)
+    return weight_comparison unless weight_comparison.zero?
+
+    time_comparison = compare_times(poll, another_poll)
+    return time_comparison unless time_comparison.zero?
+
+    poll.name <=> another_poll.name
+  end
+
+  def self.compare_times(poll, another_poll)
+    if poll.expired? && another_poll.expired?
+      another_poll.ends_at <=> poll.ends_at
+    else
+      poll.starts_at <=> another_poll.starts_at
     end
   end
 
   def self.overlaping_with(poll)
-    where("? < ends_at and ? >= starts_at", poll.starts_at.beginning_of_day,
-                                            poll.ends_at.end_of_day).where.not(id: poll.id)
-                                            .where(related: poll.related)
+    where("? < ends_at and ? >= starts_at",
+          poll.starts_at.beginning_of_day,
+          poll.ends_at.end_of_day)
+      .where.not(id: poll.id)
+      .where(related: poll.related)
   end
 
   def title
     name
   end
 
-  def current?(timestamp = Date.current.beginning_of_day)
+  def started?(timestamp = Time.current)
+    starts_at.present? && starts_at < timestamp
+  end
+
+  def current?(timestamp = Time.current)
     starts_at <= timestamp && timestamp <= ends_at
   end
 
-  def expired?(timestamp = Date.current.beginning_of_day)
+  def expired?(timestamp = Time.current)
     ends_at < timestamp
   end
 
@@ -94,7 +122,7 @@ class Poll < ApplicationRecord
     return none if user.nil? || user.unverified?
 
     current.left_joins(:geozones)
-      .where("geozone_restricted = ? OR geozones.id = ?", false, user.geozone_id)
+           .where("geozone_restricted = ? OR geozones.id = ?", false, user.geozone_id)
   end
 
   def self.votable_by(user)
@@ -138,9 +166,42 @@ class Poll < ApplicationRecord
   end
 
   def date_range
-    unless starts_at.present? && ends_at.present? && starts_at <= ends_at
+    if starts_at.blank? || ends_at.blank? || starts_at > ends_at
       errors.add(:starts_at, I18n.t("errors.messages.invalid_date_range"))
     end
+  end
+
+  def start_date_is_not_past_date
+    if starts_at.present? && starts_at < Time.current
+      errors.add(:starts_at, I18n.t("errors.messages.past_date"))
+    end
+  end
+
+  def start_date_change
+    if will_save_change_to_starts_at?
+      if starts_at_in_database < Time.current
+        errors.add(:starts_at, I18n.t("errors.messages.cannot_change_date.poll_started"))
+      elsif starts_at < Time.current
+        errors.add(:starts_at, I18n.t("errors.messages.past_date"))
+      end
+    end
+  end
+
+  def end_date_is_not_past_date
+    if will_save_change_to_ends_at? && ends_at < Time.current
+      errors.add(:ends_at, I18n.t("errors.messages.past_date"))
+    end
+  end
+
+  def end_date_change
+    if will_save_change_to_ends_at? && ends_at_in_database < Time.current
+      errors.add(:ends_at, I18n.t("errors.messages.cannot_change_date.poll_ended"))
+    end
+  end
+
+  def geozone_restricted_to=(geozones)
+    self.geozone_restricted = true
+    self.geozones = geozones
   end
 
   def generate_slug?
@@ -148,9 +209,9 @@ class Poll < ApplicationRecord
   end
 
   def only_one_active
-    return unless starts_at.present?
-    return unless ends_at.present?
-    return unless Poll.overlaping_with(self).any?
+    return if starts_at.blank?
+    return if ends_at.blank?
+    return if Poll.overlaping_with(self).none?
 
     errors.add(:starts_at, I18n.t("activerecord.errors.messages.another_poll_active"))
   end
@@ -169,8 +230,8 @@ class Poll < ApplicationRecord
 
   def searchable_translations_definitions
     {
-      name        => "A",
-      summary     => "C",
+      name => "A",
+      summary => "C",
       description => "D"
     }
   end

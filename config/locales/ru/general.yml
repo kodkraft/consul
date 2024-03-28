@@ -66,12 +66,6 @@ ru:
       form:
         submit_button: Начать дебаты
     debate:
-      comments:
-        zero: Нет комментариев
-        one: 1 комментарий
-        few: "%{count} комментария(иев)"
-        many: "%{count} комментария(иев)"
-        other: "%{count} комментария(иев)"
       votes:
         zero: Нет голосов
         one: 1 голос
@@ -129,12 +123,6 @@ ru:
       start_new: Начать дебаты
     show:
       author_deleted: Пользователь удален
-      comments:
-        zero: Нет комментариев
-        one: 1 комментарий
-        few: "%{count} комментария(иев)"
-        many: "%{count} комментария(иев)"
-        other: "%{count} комментария(иев)"
       comments_title: Комментарии
       edit_debate_link: Редактировать
       flag: Эти дебаты были отмечены несколькими пользователями как неуместная.
@@ -149,7 +137,6 @@ ru:
       invalid_date_range: "Неверный диапазон дат"
   form:
     accept_terms: Я согласен с %{policy} и %{conditions}
-    accept_terms_title: Я согласен с Политикой конфиденциальности и Положениями и условиями пользования
     conditions: Положения и условия пользования
     debate: Обсуждение
     direct_message: личное сообщение
@@ -177,11 +164,6 @@ ru:
   geozones:
     none: Весь город
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Мы обнаружили, что вы используете Internet Explorer. Для лучшей работы с сайтом, мы рекомендуем вам использовать %{firefox} или %{chrome}.
-      ie_title: Этот сайт не оптимизирован для вашего браузера
     dashboard:
       proposal_header:
         published: Опубликовано
@@ -202,9 +184,9 @@ ru:
     footer:
       accessibility: Доступность
       conditions: Положения и условия пользования
-      consul: Приложение CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: Приложение CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Этот портал использует %{consul}, являющийся %{open_source}.
       open_source: открытым программным обеспечением
       participation_text: Решайте каким сделать город, в котором вы хотите жить.
@@ -398,12 +380,6 @@ ru:
         edit: "Прежде чем им поделятся, вы сможете изменить текст так, как пожелаете."
         view_proposal: Не сейчас, перейти к моему предложению
       already_supported: Вы уже поддержали это предложение. Поделитесь им!
-      comments:
-        zero: Нет комментариев
-        one: 1 комментарий
-        few: "%{count} комментария(иев)"
-        many: "%{count} комментария(иев)"
-        other: "%{count} комментария(иев)"
       support: Поддержка
       support_title: Поддержать это предложение
       supports:
@@ -426,12 +402,6 @@ ru:
     show:
       author_deleted: Пользователь удален
       code: "Код предложения:"
-      comments:
-        zero: Нет комментариев
-        one: 1 комментарий
-        few: "%{count} комментария(иев)"
-        many: "%{count} комментария(иев)"
-        other: "%{count} комментария(иев)"
       comments_tab: Комментарии
       dashboard_proposal_link: Рабочий стол
       flag: Это предложение было помечено несколькими пользователями как неуместное.

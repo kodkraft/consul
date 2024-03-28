@@ -1,8 +1,7 @@
 .admin-sidebar {
-  background: $sidebar;
-  background: linear-gradient(to bottom, #245b80 0%, #488fb5 100%);
+  @include background-with-text-contrast($sidebar);
+  background: linear-gradient(to bottom, $sidebar 0%, #488fb5 100%);
   border-right: 1px solid $border;
-  color: $white;
 
   ul {
     list-style-type: none;
@@ -113,9 +112,6 @@
   }
 
   li {
-    margin: 0;
-    outline: 0;
-
     ul {
       margin-left: $line-height / 1.5;
       border-left: 1px solid $sidebar-hover;
@@ -177,10 +173,6 @@
     a {
       font-weight: normal;
       margin-#{$global-right}: 0;
-    }
-
-    .is-active {
-      border-bottom: 0;
     }
   }
 }

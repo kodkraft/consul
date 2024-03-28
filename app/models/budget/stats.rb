@@ -53,6 +53,10 @@ class Budget::Stats
     budget.investments.count
   end
 
+  def total_supports
+    supports(budget).count
+  end
+
   def total_votes
     budget.ballots.pluck(:ballot_lines_count).sum
   end
@@ -125,8 +129,8 @@ class Budget::Stats
     def balloters_by_heading(heading_id)
       stats_cache("balloters_by_heading_#{heading_id}") do
         budget.ballots.joins(:lines)
-                      .where(budget_ballot_lines: { heading_id: heading_id })
-                      .distinct.pluck(:user_id)
+              .where(budget_ballot_lines: { heading_id: heading_id })
+              .distinct.pluck(:user_id)
       end
     end
 
@@ -176,7 +180,7 @@ class Budget::Stats
 
     stats_cache(*stats_methods)
 
-    def stats_cache(key, &block)
-      Rails.cache.fetch("budgets_stats/#{budget.id}/#{phases.join}/#{key}/#{version}", &block)
+    def stats_cache(key, &)
+      Rails.cache.fetch("budgets_stats/#{budget.id}/#{phases.join}/#{key}/#{version}", &)
     end
 end

@@ -74,12 +74,6 @@ uk-UA:
       form:
         submit_button: Розпочати обговорення
     debate:
-      comments:
-        zero: Коментарі відсутні
-        one: 1 коментар
-        few: "%{count} коментарі"
-        many: "%{count} коментарів"
-        other: "%{count} коментарів"
       votes:
         zero: Голоси відсутні
         one: 1 голос
@@ -137,12 +131,6 @@ uk-UA:
       start_new: Розпочати обговорення
     show:
       author_deleted: Користувач видалений
-      comments:
-        zero: Коментарі відсутні
-        one: 1 коментар
-        few: "%{count} коментарі"
-        many: "%{count} коментарів"
-        other: "%{count} коментарів"
       comments_title: Коментарі
       edit_debate_link: Редагувати
       flag: Це обговорення позначене як недоречне кількома користувачами.
@@ -157,7 +145,6 @@ uk-UA:
       invalid_date_range: "Недійсний діапазон даних"
   form:
     accept_terms: Я погоджуюся з %{policy} та %{conditions}
-    accept_terms_title: Я погоджуюся з Політикою конфіденційності і Правилами та умовами користування
     conditions: Правила та умови користування
     debate: Обговорення
     direct_message: особисте повідомлення
@@ -190,11 +177,6 @@ uk-UA:
   geozones:
     none: Все місто
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Ми виявили, що ви користуєтесь браузером Internet Explorer. Для кращого результату ми рекомендуємо користуватися %{firefox} або %{chrome}.
-      ie_title: Цей вебсайт не пристосований для вашого браузера
     dashboard:
       proposal_header:
         published: Опубліковано
@@ -215,9 +197,9 @@ uk-UA:
     footer:
       accessibility: Доступність
       conditions: Правила та умови користування
-      consul: Додаток CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: Додаток CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Цей портал використовує %{consul} який знаходиться %{open_source}.
       open_source: відкрите програмне забезпечення
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -416,12 +398,6 @@ uk-UA:
         edit: "Перед тим, як ви поділитесь нею, ви можете змінити текст."
         view_proposal: Не зараз, перейти до моєї пропозиції
       already_supported: Ви вже підтримали цю пропозицію. Поділіться нею!
-      comments:
-        zero: Коментарі відсутні
-        one: 1 коментар
-        few: "%{count} коментарі"
-        many: "%{count} коментарів"
-        other: "%{count} коментарів"
       support: Підтримка
       support_title: Підтримати цю пропозицію
       supports:
@@ -444,12 +420,6 @@ uk-UA:
     show:
       author_deleted: Користувача видалено
       code: "Код пропозиції:"
-      comments:
-        zero: Коментарі відсутні
-        one: 1 коментар
-        few: "%{count} коментарі"
-        many: "%{count} коментарів"
-        other: "%{count} коментарів"
       comments_tab: Коментарі
       dashboard_proposal_link: Інформаційна панель
       flag: Цю пропозицію позначено як недоречну кількома користувачами.
