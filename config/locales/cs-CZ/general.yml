@@ -1,6 +1,7 @@
 cs:
   account:
     show:
+      last_sign_in: "Poslední přihlášení: %{last_sign_in_at} z IP %{last_sign_in_ip}"
       change_credentials_link: Změnit své přihlašovací údaje
       erase_account_link: Smazat můj účet
       finish_verification: Dokončete ověření
@@ -77,12 +78,6 @@ cs:
       form:
         submit_button: Zahájit debatu
     debate:
-      comments:
-        zero: Žádné komentáře
-        one: 1 komentář
-        few: "%{count} komentářů"
-        many: "%{count} komentářů"
-        other: "%{count} komentářů"
       votes:
         zero: Žádné hlasy
         one: 1 hlas
@@ -140,12 +135,6 @@ cs:
       start_new: Zahájit debatu
     show:
       author_deleted: Uživatel
-      comments:
-        zero: Žádné komentáře
-        one: 1 komentář
-        few: "%{count} komentářů"
-        many: "%{count} komentářů"
-        other: "%{count} komentářů"
       comments_title: Komentáře
       edit_debate_link: Upravit
       flag: Tato diskuse byla označena několika uživateli za nevhodnou.
@@ -159,9 +148,12 @@ cs:
       allowed_file_content_types: "typ obsahu musí být jeden z %{types}"
       user_not_found: Uživatel nenalezen
       invalid_date_range: "Neplatný rozsah dat"
+      past_date: "Nesmí být minulé datum"
+      cannot_change_date:
+        poll_started: "Nelze změnit, pokud již bylo zahájeno hlasování"
+        poll_ended: "Nelze změnit, pokud hlasování již skončilo"
   form:
     accept_terms: Souhlasím s podmínkami %{policy} a %{conditions}
-    accept_terms_title: Souhlasím s Pravidly ochrany soukromí a Podmínkami používání
     conditions: Podmínky používání
     debate: Debata
     direct_message: soukromá zpráva
@@ -180,7 +172,6 @@ cs:
     legislation/process: proces
     legislation/question: otázka
     poll/shift: Posun
-    poll/question/answer: Answer
     user: Účet
     verification/sms: telefon
     signature_sheet: Podpisové arch
@@ -195,11 +186,6 @@ cs:
   geozones:
     none: Celé město
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Zjistili jsme, že prohlížíte aplikaci Internet Explorer. Pro rozšířené zkušenosti doporučujeme použít %{firefox} nebo %{chrome}.
-      ie_title: Tato webová stránka není optimalizována pro váš prohlížeč
     dashboard:
       proposal_header:
         published: Publikováno
@@ -220,9 +206,9 @@ cs:
     footer:
       accessibility: Přístupnost
       conditions: Podmínky používání
-      consul: aplikace CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: aplikace CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Tento portál software %{consul}, což je %{open_source}.
       open_source: open source software
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -255,6 +241,7 @@ cs:
           other: Máte %{count} nových oznámení
         notifications: Upozornění
       sdg: "SDG"
+    skip_to_main_content: "Přeskočit na hlavní obsah"
   notifications:
     index:
       empty_notifications: Nemáte nová upozornění.
@@ -327,7 +314,7 @@ cs:
       show_link: Zobrazit návrh
     retire_form:
       title: Pozastavit návrh
-      warning: "Jestliže návrh pozastavíte, bude moci i nadéle získat podporu, ale bude odstraněn z hlavního seznamu a zprávy budou viditelné všem uživatelům s uvedením informace autora, že by návrh už neměl být podporován."
+      warning: "Jestliže návrh pozastavíte, bude moci i nadéle získat podporu, ale bude odstraněn z hlavního seznamu a zprávy budou viditelné všem uživatelům s uvedením informace autora, že by návrh už neměl být podporován"
       retired_reason_blank: Vyberte možnost
       retired_explanation_placeholder: Vysvětlit krátce, proč si myslíte, že tento návrh shoulderstand neobdrží další podporu
       submit_button: Pozastavený návrh
@@ -417,12 +404,6 @@ cs:
         edit: "Než bude sdílen, můžete měnit text, jak se vám líbí."
         view_proposal: Teď ne, přejít na můj návrh
       already_supported: Tento návrh jste již podpořili. Sdílejte jej!
-      comments:
-        zero: Žádné komentáře
-        one: 1 komentář
-        few: "%{count} komentářů"
-        many: "%{count} komentářů"
-        other: "%{count} komentářů"
       support: Podpořit
       support_label: "Podpořit %{proposal}"
       support_title: Podpořit tento návrh
@@ -446,12 +427,6 @@ cs:
     show:
       author_deleted: Uživatel
       code: "Kód návrhu:"
-      comments:
-        zero: Žádné komentáře
-        one: 1 komentář
-        few: "%{count} komentářů"
-        many: "%{count} komentářů"
-        other: "%{count} komentářů"
       comments_tab: Komentáře
       dashboard_proposal_link: Ovládací panel
       flag: Tento návrh byl více uživateli označen jako nevhodný.
@@ -527,6 +502,11 @@ cs:
       see_complete_course: Prohlédněte si celý kurz
       hide_course: Skrýt kurz
     goal:
+      target_supports:
+        one: Získejte %{count} podporu pro svůj návrh
+        few: Získejte %{count} podpory pro svůj návrh
+        many: Získejte %{count} podpor pro svůj návrh
+        other: Získejte %{count} podpor pro svůj návrh
       days:
         one: "%{count} den"
         few: "%{count} dny"
@@ -616,7 +596,6 @@ cs:
         share: "A pokud mi také prokážete velkou laskavost a podělíte se o můj návrh se svými přáteli, rodinou a kontakty, bude to perfektní!"
   polls:
     all: "Vše"
-    no_dates: "není přiřazené datum"
     dates: "Od %{open_at} do %{closed_at}"
     final_date: "Konečné přepočty/výsledky"
     index:
@@ -628,7 +607,7 @@ cs:
       participate_button_expired: "Průzkum ukončen"
       no_geozone_restricted: "Celé město"
       geozone_restricted: "Městské části"
-      geozone_info: "Otevřeno pro obyvatele z: "
+      geozone_info: "Může se podílet na registrech občanů: "
       already_answer: "Tohoto hlasování jste se již účastnili"
       not_logged_in: "Pro účast se musíte registrovat a přihlásit"
       unverified: "Pro zapojení je nutné ověřit váš účet"
@@ -679,6 +658,10 @@ cs:
     show:
       vote_answer: "Hlasování %{answer}"
       voted: "Hlasovali jste %{answer}"
+    description:
+      unique: "Můžete vybrat maximálně 1 odpověď."
+      multiple: "Můžete vybrat maximálně %{maximum} odpovědí."
+    read_more_about: "Více informací o:"
   proposal_notifications:
     new:
       title: "Odeslat zprávu"
@@ -717,7 +700,6 @@ cs:
       author_deleted: Uživatel
       email_deleted: E-mail smazán
     back: Jít zpět
-    check: Vybrat
     check_all: Vše
     check_none: Žádné
     collective: Kolektiv
@@ -787,24 +769,18 @@ cs:
         other: "%{count} používaných jazyků"
     optional: "Volitelně"
     required: "Požadováno"
+    comments:
+      zero: "Žádné komentáře"
+      one: "1 komentář"
+      few: "%{count} komentáře"
+      many: "%{count} komentářů"
+      other: "%{count} komentářů"
   social:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
     youtube: "%{org} YouTube"
     telegram: "%{org} Telegram"
     instagram: "%{org} Instagram"
-  stats:
-    index:
-      visits: Návštěvy
-      debates: Debaty
-      proposals: Návrhy
-      comments: Komentáře
-      proposal_votes: Hlasujte o návrzích
-      debate_votes: Hlasování k debatám
-      comment_votes: Hlasování ke komentářům
-      votes: Hlasů celkem
-      verified_users: Ověření uživatelé
-      unverified_users: Neověření uživatelé
   unauthorized:
     default: Nemáte oprávnění k přístupu na tuto stránku.
     manage:

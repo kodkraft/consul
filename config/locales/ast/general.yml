@@ -52,9 +52,6 @@ ast:
       form:
         submit_button: Empezar un debate
     debate:
-      comments:
-        one: 1 Comentario
-        other: "%{count} comentarios"
       votes:
         one: 1 voto
         other: "%{count} votos"
@@ -94,9 +91,6 @@ ast:
       start_new: Empezar un debate
     show:
       author_deleted: Usuariu esaniciáu
-      comments:
-        one: 1 Comentario
-        other: "%{count} comentarios"
       comments_title: Comentarios
       edit_debate_link: Editar propuesta
       flag: Este debate ha sido marcado como inapropiado por varios usuarios.
@@ -111,7 +105,6 @@ ast:
       invalid_date_range: "El rango de fechas no es válido"
   form:
     accept_terms: Acepto la %{policy} y las %{conditions}
-    accept_terms_title: Acepto la Política de privacidad y las Condiciones de uso
     conditions: Condiciones de uso
     debate: Alderique
     direct_message: el mensaje privado
@@ -121,7 +114,6 @@ ast:
     proposal: la propuesta
     proposal_notification: "la notificación"
     budget/investment: Proyectu de inversión
-    poll/question/answer: Respuesta
     user: la cuenta
     verification/sms: el teléfono
     signature_sheet: la hoja de firmas
@@ -129,11 +121,6 @@ ast:
   geozones:
     none: Toda la ciudad
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Hemos detectado que estás navegando desde Internet Explorer. Para una mejor experiencia te recomendamos utilizar %{firefox} o %{chrome}.
-      ie_title: Esta web no está optimizada para tu navegador
     dashboard:
       proposal_header:
         published: Publicáu
@@ -142,7 +129,7 @@ ast:
     footer:
       accessibility: Accesibilidad
       conditions: Condiciones de uso
-      consul_url: https://github.com/consul/consul
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
       description: Este portal usa la %{consul} que es %{open_source}.
       open_source: software libre
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -291,9 +278,6 @@ ast:
         edit: "Antes de que se publique podrás modificar el texto a tu gusto."
         view_proposal: Ahora no, ir a mi propuesta
       already_supported: '¡Ya has apoyado esta propuesta, compártela!'
-      comments:
-        one: 1 Comentario
-        other: "%{count} comentarios"
       support: Sofitar
       support_title: Apoyar esta propuesta
       supports:
@@ -308,9 +292,6 @@ ast:
     show:
       author_deleted: Usuariu esaniciáu
       code: "Código de la propuesta:"
-      comments:
-        one: 1 Comentario
-        other: "%{count} comentarios"
       comments_tab: Comentarios
       flag: Esta propuesta ha sido marcada como inapropiada por varios usuarios.
       notifications_tab: Notificaciones
@@ -358,7 +339,6 @@ ast:
         support_button: Apoyar esta propuesta
   polls:
     all: "Toes"
-    no_dates: "sin fecha asignada"
     dates: "Desde el %{open_at} hasta el %{closed_at}"
     final_date: "Recuento final/Resultados"
     index:
@@ -424,7 +404,6 @@ ast:
     author_info:
       author_deleted: Usuariu esaniciáu
     back: Volver
-    check: Escoyer
     check_all: Toes
     check_none: Ninguno
     collective: Colectivo
@@ -470,18 +449,6 @@ ast:
     youtube: "YouTube de %{org}"
     telegram: "Telegram de %{org}"
     instagram: "Instagram de %{org}"
-  stats:
-    index:
-      visits: Visitas
-      debates: Alderique
-      proposals: Propuestes
-      comments: Comentarios
-      proposal_votes: Votos en propuestas
-      debate_votes: Votos en debates
-      comment_votes: Votos en comentarios
-      votes: Votos
-      verified_users: Usuarios verificados
-      unverified_users: Usuarios sin verificar
   unauthorized:
     default: No tienes permiso para acceder a esta página.
     manage:

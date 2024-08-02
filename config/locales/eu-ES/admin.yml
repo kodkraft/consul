@@ -387,7 +387,6 @@ eu:
         index:
           title: Zirriborroaren bertsioak
           create: Bertsioa sortu
-          delete: Ezabatu
           preview: Aurreikusi
         new:
           back: Itzuli
@@ -420,7 +419,6 @@ eu:
           back: Itzuli
           title: Prosezu honi esleitutako galderak
           create: Galdera sortu
-          delete: Ezabatu
         new:
           back: Itzuli
           title: Galder berria sortu
@@ -727,9 +725,6 @@ eu:
         no_questions: "Bozkaketa honi ez zaio galderarik esleitu."
         questions_title: "Esleitutako galdera zerrenda"
         table_title: "Izenburua"
-      flash:
-        question_added: "Bozkaketa honi gehitutako galdera"
-        error_on_question_added: "Ezin izan da galdera esleitu"
     questions:
       index:
         title: "Galderak"
@@ -773,12 +768,6 @@ eu:
     answers:
       new:
         title: Erantzun berria
-      show:
-        title: Izenburua
-        description: Deskribapena
-        images: Irudiak
-        images_list: Irudi zerrenda
-        edit: Erantzuna editatu
       edit:
         title: Erantzuna editatu
       videos:
@@ -1007,7 +996,6 @@ eu:
           verified_users_who_didnt_vote_proposals: Proposamenak bozkatu ez duten egiaztatutako erabiltzaileak
           visits: Bisitak
           votes: Bozkak
-        budgets_title: Partaidetzazko aurrekontuak
         participatory_budgets: Partaidetzazko aurrekontuak
         direct_messages: Mezu zuzenak
         proposal_notifications: Proposamen jakinarazpenak
@@ -1015,7 +1003,6 @@ eu:
         polls: Bozkaketak
       graph:
         debate_created: Eztabaidak
-        visit: Bisita
         proposal_created: Herri proposamenak
       budget_balloting:
         vote_count: Bozkak
@@ -1100,7 +1087,6 @@ eu:
         index:
           title: Irudiak pertsonalizatu
           update: Eguneratu
-          delete: Ezabatu
           image: Irudia
         update:
           notice: Irudia ondo eguneratuta

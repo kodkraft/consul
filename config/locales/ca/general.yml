@@ -66,10 +66,6 @@ ca:
       form:
         submit_button: Comença un nou debat
     debate:
-      comments:
-        zero: Sense comentaris
-        one: 1 Comentari
-        other: "%{count} comentaris"
       votes:
         zero: Sense vots
         one: 1 vot
@@ -125,10 +121,6 @@ ca:
       start_new: Comença un nou debat
     show:
       author_deleted: Usuari eliminat
-      comments:
-        zero: Sense comentaris
-        one: 1 Comentari
-        other: "%{count} comentaris"
       comments_title: Comentarios
       edit_debate_link: Editar proposta
       flag: Aquest debat ha sigut marcat com a inadequat per diversos usuaris.
@@ -143,7 +135,6 @@ ca:
       invalid_date_range: "El rango de fechas no es válido"
   form:
     accept_terms: Accepte la %{policy} i les %{conditions}
-    accept_terms_title: Accepte la Política de privacitat i les Condicions d'ús
     conditions: Condicions d'ús
     debate: debat previ
     direct_message: el missatge privat
@@ -162,7 +153,6 @@ ca:
     legislation/process: procés
     legislation/question: pregunta
     poll/shift: Majúscules
-    poll/question/answer: Resposta
     user: el compte
     verification/sms: el telèfon
     signature_sheet: la fulla de signatures
@@ -176,11 +166,6 @@ ca:
   geozones:
     none: Tota la ciutat
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Hem detectat que estàs navegant des d'Internet Explorer. Per a una millor experiència et recomanem utilitzar %{firefox} o %{chrome}.
-      ie_title: Aquesta web no està optimitzada per al teu navegador
     dashboard:
       proposal_header:
         published: Publicat
@@ -199,9 +184,9 @@ ca:
     footer:
       accessibility: Accessibilitat
       conditions: Condicions d'ús
-      consul: Sol·licitud CONSUL
-      consul_url: https://github.com/consul/consul
-      copyright: CONSUL, %{year}
+      consul: Aplicació CONSUL DEMOCRACY
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
+      copyright: CONSUL DEMOCRACY, %{year}
       description: Aquest portal és una adaptació de la plataforma de %{open_source} %{consul} desenvolupada per l'Ajuntament de Madrid i adaptada per la Diputació de València.
       open_source: programari lliure
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
@@ -390,10 +375,6 @@ ca:
         edit: "Abans que es comparteixi, podreu canviar el text que vulgueu."
         view_proposal: Ara no, veure la meva proposta
       already_supported: Ja has avalat aquesta proposta.
-      comments:
-        zero: Sense comentaris
-        one: 1 Comentari
-        other: "%{count} comentaris"
       support: Avalar
       support_title: Avalar aquesta proposta
       supports:
@@ -412,10 +393,6 @@ ca:
     show:
       author_deleted: Usuari eliminat
       code: "Codi de la proposta:"
-      comments:
-        zero: Sense comentaris
-        one: 1 Comentari
-        other: "%{count} comentaris"
       comments_tab: Comentarios
       dashboard_proposal_link: Panell
       flag: Aquesta proposta ha sigut marcada com a inadequada per diversos usuaris.
@@ -577,7 +554,6 @@ ca:
         share: "I si també em feu el gran favor de compartir la meva proposta amb els vostres amics, familiars i contactes, seria perfecte!"
   polls:
     all: "tots"
-    no_dates: "sense data asignada"
     dates: "Des de el %{open_at} fins al %{closed_at}"
     final_date: "Recompte final/Resultats"
     index:
@@ -674,7 +650,6 @@ ca:
       author_deleted: Usuari eliminat
       email_deleted: S'ha suprimit el correu electrònic
     back: Tornar
-    check: Seleccionar
     check_all: tots
     check_none: Cap
     collective: Associació
@@ -755,18 +730,6 @@ ca:
     youtube: "%{org} YouTube"
     telegram: "%{org} Telegram"
     instagram: "%{org} Instagram"
-  stats:
-    index:
-      visits: Visites
-      debates: Debats
-      proposals: Propostes ciutadanes
-      comments: Comentarios
-      proposal_votes: Vots en propostes
-      debate_votes: Vots en debats
-      comment_votes: Vots en comentario
-      votes: Vots
-      verified_users: Usuaris verificats
-      unverified_users: Usuaris sense verificar
   unauthorized:
     default: No tens permís per a accedir a aquesta pàgina.
     manage:

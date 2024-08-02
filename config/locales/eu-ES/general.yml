@@ -62,10 +62,6 @@ eu:
       form:
         submit_button: Eztabaida bat hasi
     debate:
-      comments:
-        zero: Iruzkin gabe
-        one: Iruzkin 1
-        other: "%{count} Iruzkin"
       votes:
         zero: Bozka gabe
         one: Bozka 1
@@ -121,10 +117,6 @@ eu:
       start_new: Eztabaida bat hasi
     show:
       author_deleted: Erabiltzailea ezabatuta
-      comments:
-        zero: Iruzkin gabe
-        one: Iruzkin 1
-        other: "%{count} iruzkin"
       comments_title: Iruzkinak
       edit_debate_link: Eztabaida editatu
       flag: Eztabaida hau desegoki moduan markatu da zenbait erabiltzaileengaitik.
@@ -139,7 +131,6 @@ eu:
       invalid_date_range: "Data tartea ez da baliagarria"
   form:
     accept_terms: '%{policy} eta %{conditions} onartzen ditut'
-    accept_terms_title: Pribatutasun politika eta erabilera baldintzak onartzen ditut
     conditions: Erabilera baldintzak
     debate: Eztabaida
     direct_message: Mezu pribatua
@@ -151,7 +142,6 @@ eu:
     budget/investment: Inbertsioa
     budget/heading: aurrekontu-saila
     poll/shift: txanda
-    poll/question/answer: Erantzuna
     user: kontua
     verification/sms: telefonoa
     signature_sheet: firma orria
@@ -161,11 +151,6 @@ eu:
   geozones:
     none: Herri osoa
   layouts:
-    application:
-      chrome: Google Chrome
-      firefox: Firefox
-      ie: Internet Explorer erabiltzen ari zarela ohartu gara. %{firefox} edo %{chrome} erabiltzea gomendatzen dizugu.
-      ie_title: Web orri hau ez da zure nabigatzailearentzat sortu. Baliteke behar bezala ez ikustea.
     dashboard:
       proposal_header:
         draft: Zirriborroa
@@ -176,7 +161,7 @@ eu:
       accessibility: Eskuragarritasuna
       conditions: Erabilera baldintzak
       consul: CONSUL aplikazioa
-      consul_url: https://github.com/consul/consul
+      consul_url: https://github.com/consuldemocracy/consuldemocracy
       copyright: CONSUL, %{year}
       description: Web atari honek %{consul} erbalitzen du eta %{open_source} da.
       open_source: Kode ireki softwarea
@@ -343,10 +328,6 @@ eu:
         edit: "Argitaratu aurretik testua zure gustura eraldatu dezakezu."
         view_proposal: Orain ez, nire proposamenera joan
       already_supported: Proposamen hau babestu duzu, orain partekatu ezazu!
-      comments:
-        zero: Iruzkin gabe
-        one: Iruzkin 1
-        other: "%{count} Iruzkin"
       support: Babestu
       support_title: Proposamen hau babestu
       supports:
@@ -363,10 +344,6 @@ eu:
     show:
       author_deleted: Erabiltzailea ezabatuta
       code: "Proposamen kodea:"
-      comments:
-        zero: Iruzkin gabe
-        one: Iruzkin 1
-        other: "%{count} iruzkin"
       comments_tab: Iruzkinak
       flag: Eztabaida hau desegoki moduan markatu da zenbait erabiltzaileengaitik.
       notifications_tab: Jakinarazpenak
@@ -425,7 +402,6 @@ eu:
         support_button: Proposamen hau babestu
   polls:
     all: "Guztiak"
-    no_dates: "data jarri gabe"
     dates: "%{open_at}-tik %{closed_at}-ra"
     final_date: "Azken zenbaketa/Emaitzak"
     index:
@@ -513,7 +489,6 @@ eu:
     author_info:
       author_deleted: Erabiltzailea ezabatuta
     back: Itzuli
-    check: Aukeratu
     check_all: Guztiak
     check_none: Bat ere ez
     collective: Kolektibo
@@ -574,18 +549,6 @@ eu:
     youtube: "%{org} YouTubea"
     telegram: "%{org} Telegrama"
     instagram: "%{org} Instagrama"
-  stats:
-    index:
-      visits: Bisita
-      debates: Eztabaidak
-      proposals: Herri proposamenak
-      comments: Iruzkinak
-      proposal_votes: Bozkak proposamenetan
-      debate_votes: Bozkak eztabaidetan
-      comment_votes: Bozkak iruzkinetan
-      votes: Bozkak
-      verified_users: Egiaztatutatutako erabiltzaileak
-      unverified_users: Egiaztatu gabeko erabiltzaileak
   unauthorized:
     default: Ez duzu baimenik orri honetara sartzeko.
     manage:

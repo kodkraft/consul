@@ -40,8 +40,6 @@ it:
     telegram_handle_description: "Se compilato apparirà nel piè di pagina"
     instagram_handle: "Utente Instagram"
     instagram_handle_description: "Se compilato apparirà nel piè di pagina"
-    url: "URL principale"
-    url_description: "URL principale del tuo sito web"
     org_name: "Organizzazione"
     org_name_description: "Questo nome apparirà sull'oggetto dei mittenti, pagine di supporto..."
     related_content_score_threshold: "Soglia del punteggio del contenuto correlato"
@@ -118,8 +116,6 @@ it:
       allow_attached_documents_description: "Consente agli utenti di caricare documenti creando proposte e progetti d'investimento dai Budget partecipativi"
       guides: "Guide alla creazione di proposte o progetti d'investimento"
       guides_description: "Mostra una guida alle differenze tra proposte e progetti d'investimento se c'è un budget partecipativo attivo"
-      public_stats: "Statistiche pubbliche"
-      public_stats_description: "Mostra le statistiche pubbliche nel pannello d'Amministrazione"
       help_page: "Guida"
       help_page_description: 'Mostra un menu d''Aiuto che contiene una pagina con una sezione di info su ogni funzionalità abilitata. Anche le pagine personalizzate e i menu sono creabili nelle sezioni "Pagine personalizzate" e "Blocchi di contenuto personalizzati"'
       remote_translations: "Traduzione remota"

@@ -54,10 +54,6 @@ fa:
       form:
         submit_button: شروع بحث
     debate:
-      comments:
-        zero: بدون نظر
-        one: 1 نظر
-        other: "%{count} نظرات"
       votes:
         zero: بدون رای
         one: 1 رای
@@ -94,10 +90,6 @@ fa:
       start_new: شروع بحث
     show:
       author_deleted: کاربر حذف شد
-      comments:
-        zero: بدون نظر
-        one: 1 نظر
-        other: "%{count} نظرات"
       comments_title: توضیحات
       edit_debate_link: ویرایش
       share: "اشتراک گذاری\n"
@@ -116,8 +108,7 @@ fa:
     proposal: طرح های پیشنهادی
     proposal_notification: "اطلاعیه ها"
     budget/investment: سرمایه گذاری
-    poll/shift: تغییر 
-    poll/question/answer: پاسخ
+    poll/shift: تغییر
     user: "حساب\n"
     verification/sms: تلفن
     signature_sheet: ورق امضا
@@ -133,7 +124,7 @@ fa:
         draft: ' پیش نویس'
       proposal_totals:
         supports:
-          zero: بدون پشتیبانی 
+          zero: بدون پشتیبانی
     footer:
       accessibility: قابلیت دسترسی
       participation_title: "مشارکت\n"
@@ -165,7 +156,7 @@ fa:
   proposals:
     create:
       form:
-        submit_button: ایجاد طرح 
+        submit_button: ایجاد طرح
     edit:
       form:
         submit_button: ذخیره تغییرات
@@ -202,15 +193,11 @@ fa:
         title: طرح های پیشنهادی
     new:
       form:
-        submit_button: ایجاد طرح 
+        submit_button: ایجاد طرح
     proposal:
-      comments:
-        zero: بدون نظر
-        one: 1 نظر
-        other: "%{count} نظرات"
       support: پشتیبانی
       supports:
-        zero: بدون پشتیبانی 
+        zero: بدون پشتیبانی
         one: 1 پشتیبانی
         other: "%{count}پشتیبانی"
       votes:
@@ -220,10 +207,6 @@ fa:
     show:
       author_deleted: کاربر حذف شد
       code: "کد طرح:"
-      comments:
-        zero: بدون نظر
-        one: 1 نظر
-        other: "%{count} نظرات"
       comments_tab: توضیحات
       notifications_tab: اطلاعیه ها
       milestones_tab: نقطه عطف
@@ -302,7 +285,6 @@ fa:
     author_info:
       author_deleted: کاربر حذف شد
     back: برگرد
-    check: انتخاب
     check_all: همه
     print:
       print_button: این اطلاعات را چاپ کنید
@@ -326,18 +308,6 @@ fa:
     translations:
       remove_language: حذف زبان
       add_language: اضافه کردن زبان
-  stats:
-    index:
-      visits: بازديد
-      debates: مباحثه
-      proposals: طرح های پیشنهادی
-      comments: توضیحات
-      proposal_votes: پیشنهادات رای دهی
-      debate_votes: رای در مناظره
-      comment_votes: رای در نظر
-      votes: کل رای
-      verified_users: کاربران تایید شده
-      unverified_users: کاربران تایید نشده
   unauthorized:
     default: شما مجوز دسترسی به این صفحه را ندارید.
     manage:
@@ -362,7 +332,7 @@ fa:
       proposals: طرح های پیشنهادی
       proposals_status: وضعیت ها
       debates: مباحثه
-      budget_investments: بودجه سرمایه گذاری ها 
+      budget_investments: بودجه سرمایه گذاری ها
       comments: توضیحات
       actions: اقدامات
       filters:
